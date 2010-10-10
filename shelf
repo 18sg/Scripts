@@ -1,0 +1,23 @@
+#!/bin/bash
+
+SHELFPLAY_PORT=1337
+
+alias shelfdisplay="export DISPLAY=\"shelf:0\""
+alias shelfnodisplay="export DISPLAY=\"0:0\""
+
+function shelfkvm {
+	killall -9 x2vnc
+	x2vnc shelf:0 -edgewidth 0 2>&1 > /dev/null &
+}
+
+function shelfweb {
+	ssh shelf@shelf "export DISPLAY=\"0:0\"; chromium $1"
+}
+
+function shelfmsg {
+	ssh shelf@shelf "export DISPLAY=\"0:0\"; zenity --info --text \"$1\""
+}
+
+function shelfalsa {
+	ssh shelf@shelf -t "alsamixer"
+}
