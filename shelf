@@ -6,8 +6,7 @@ alias shelfdisplay="export DISPLAY=\"shelf:0\""
 alias shelfnodisplay="export DISPLAY=\"0:0\""
 
 function shelfkvm {
-	killall -9 x2vnc
-	x2vnc shelf:0 -edgewidth 0 2>&1 > /dev/null &
+	x2vnc shelf:0 -edgewidth 0
 }
 
 function shelfweb {
@@ -20,4 +19,28 @@ function shelfmsg {
 
 function shelfalsa {
 	ssh shelf@shelf -t "alsamixer"
+}
+
+function shelfoff {
+	ssh shelf@shelf "export DISPLAY=\"0:0\"; xset dpms force off"
+}
+
+function shelfon {
+	ssh shelf@shelf "export DISPLAY=\"0:0\"; xset dpms force on"
+}
+
+function shelfeject {
+	ssh shelf@shelf "eject -T"
+}
+
+function shelfmstop {
+	ssh shelf@shelf "mpc stop"
+}
+
+function shelfmplay {
+	ssh shelf@shelf "mpc play"
+}
+
+function shelfdvd {
+	ssh shelf@shelf "mpc stop; export DISPLAY=\"0:0\"; vlc dvd:// -f"
 }
