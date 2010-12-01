@@ -1,0 +1,5 @@
+curl --silent -u curl:curl "http://router.18sg.net/cgi/b/bb/?be=0&l0=1&l1=-1" \
+	| grep "Data Transferred (Sent/Received)" \
+	| sed -nre "s/.*\[(.*)\/(.*)\].*>([0-9.]+) \/ ([0-9.]+)<.*/Downloaded : \4\2\nUploaded   : \3\1/ p" \
+	| tail -2
+
